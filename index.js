@@ -41,5 +41,8 @@ app.get('/api/getplacefromid/:id', require('./controller/front-end/place/detailP
 
 app.get('/api/getuserbyusername/:token', require('./controller/front-end/user/getUserByUsername'));
 
+app.get('/api/getlistplacefromuser/:token/:id', require('./controller/front-end/user/getListPlaceFromUser'));
+
+
 app.get('*', require('./controller/front-end/home/home'));
 

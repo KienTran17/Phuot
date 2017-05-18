@@ -3,6 +3,10 @@ import Register from '../login/ButtonRegister';
 import { connect } from 'react-redux';
 import ListPlace from './place/ListPlace';
 import getAllPlace from '../../api/place/getAllPlace';
+import getUserByUserName from '../../api/user/getUserByUserName';
+
+
+
 
 class Home extends Component {
     constructor(props) {
@@ -11,7 +15,7 @@ class Home extends Component {
          
     }
     componentDidMount() {
-        
+
         const { isAuthen, arrAllPlace, dispatch } = this.props;
         getAllPlace().then(lstPlace => {
             this.setState({lstPlace: lstPlace});
