@@ -12,13 +12,14 @@ function getCookie(name) {
 class Header extends Component {
 	componentDidMount() {
 		const { isAuthen, dispatch } = this.props;
-		checkLogin(getCookie('tk')).then(r => {
+		const token = getCookie('tk')
+		checkLogin(token).then(r => {
 			if (r) {
 				if (!isAuthen)
 					dispatch({type: 'LOGIN'});
 					
 			}
-		});
+		}).catch(e=>e);
 	}
 	render() {
 		const { isAuthen } = this.props;

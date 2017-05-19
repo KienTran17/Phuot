@@ -15,13 +15,11 @@ export default class ListPlace extends Component {
             this.setState({ place: detailPlace });
             getUserById(this.state.place.user_id).then(detailUser => {
                 this.setState({ user: detailUser });
-               getImageFromPlace(this.state.place.id).then(lst => {
+                getImageFromPlace(this.state.place.id).then(lst => {
                     this.setState({ lstImage: lst });
                 });
             });
         });
-         
-
     }
     render() {
         const key = this.props.key;
@@ -61,22 +59,50 @@ export default class ListPlace extends Component {
                                         </span>
                                         <div className="clear" />
                                     </div>
-                                    <div className="post-preview be-large-post-slider">
+
+                                    <div id="myCarousel" className="carousel slide" data-ride="carousel">
+                                        {/* Indicators */}
+                                        <ol className="carousel-indicators">
+                                            <li data-target="#myCarousel" data-slide-to={0} className="active" />
+                                            {lstImage.map((e, i) =>
+                                                <li data-target="#myCarousel" data-slide-to={i+1} />
+                                            )}
+                                        </ol>
+                                        {/* Wrapper for slides */}
+                                        <div className="carousel-inner">
+                                            {lstImage.map((e, i) =>
+                                                <div key={i} className={i == 0 ? "item active" : "item"} >
+                                                    <img src={"/" + e.link} alt="ok" />
+                                                </div>
+                                            )}
+
+
+                                        </div>
+                                        {/* Left and right controls */}
+                                        <a className="left carousel-control" href="#myCarousel" data-slide="prev">
+                                            <span className="fa fa-chevron-left" />
+                                            <span className="sr-only">Previous</span>
+                                        </a>
+                                        <a className="right carousel-control" href="#myCarousel" data-slide="next">
+                                            <span className="fa fa-chevron-right" />
+                                            <span className="sr-only">Next</span>
+                                        </a>
+                                    </div>
+
+                                    {/*<div className="post-preview be-large-post-slider">
                                         <div className="swiper-container" data-autoplay={0} data-loop={1} data-speed={500} data-center={0} data-slides-per-view={1}>
                                             <div className="swiper-wrapper">
                                                 {lstImage.map((e, i) =>
-                                                    <div key={i} className="swiper-slide" data-val={0}>
-                                                        <img  className="img-responsive img-full" src={"/" + e.link} alt />
+                                                    <div key={i} className="swiper-slide" data-val={i}>
+                                                        <img className="img-responsive img-full" src={"/" + e.link} alt />
                                                     </div>
                                                 )}
-
-
                                             </div>
                                             <div className="pagination hidden" />
                                             <div className="swiper-arrow-left type-3" />
                                             <div className="swiper-arrow-right type-3" />
                                         </div>
-                                    </div>
+                                    </div>*/}
                                     <div className="blog-content be-large-post-align">
                                         <div className="post-text ">
                                             {place.description}

@@ -1,48 +1,4 @@
-<% include ../layout/head %>
-	<!-- THE HEADER -->
-<body>
-  <div class="be-loader">
-    <div class="spinner">
-      <div class="spinner-container container1">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-      </div>
-      <div class="spinner-container container2">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-      </div>
-      <div class="spinner-container container3">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-      </div>
-    </div>
-  </div>
-  <div id="root"></div>
-
-
-
-       
-  
-	<!-- THE FOOTER -->
-
-
-	<!-- SCRIPTS	 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="../asset/script/bootstrap.min.js"></script>		
-	<script src="../asset/script/idangerous.swiper.min.js"></script>
-	<script src="../asset/script/isotope.pkgd.min.js"></script>
-	<script src="../asset/script/jquery.viewportchecker.min.js"></script>		
-	<script src="../asset/script/global.js"></script>	
-    <script src="../bundle.js"></script>
-	</body>
-     <script>
-      // In the following example, markers appear when the user clicks on the map.
+ // In the following example, markers appear when the user clicks on the map.
       // Each marker is labeled with a single alphabetical character.
 
 
@@ -215,7 +171,3 @@
 
 
       //google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL0C1dheOG0o01S5e9FOTlVasfsAylyes&libraries=places&callback=initAutocomplete"
-      async defer></script>
-</html>

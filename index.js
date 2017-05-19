@@ -43,6 +43,7 @@ app.get('/api/getuserbyusername/:token', require('./controller/front-end/user/ge
 
 app.get('/api/getlistplacefromuser/:token/:id', require('./controller/front-end/user/getListPlaceFromUser'));
 
+app.post('/insertplace', require('./controller/front-end/user/insertPlace'));
 
 app.get('*', require('./controller/front-end/home/home'));
 
