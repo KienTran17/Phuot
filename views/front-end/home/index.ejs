@@ -50,6 +50,7 @@
       var labelIndex = 0;
       var markers = [];
       function initAutocomplete() {
+        if(document.getElementById('map')){
         var map = new google.maps.Map(document.getElementById('map'), {
           center: { lat: 10.4561, lng: 106.356 },
           zoom: 13,
@@ -133,6 +134,7 @@
 
         // Add a marker at the center of the map.
         //addMarker(bangalore, map);
+      }
       }
 
       $('#btnSentPlace').on('click',()=> {
@@ -218,4 +220,7 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL0C1dheOG0o01S5e9FOTlVasfsAylyes&libraries=places&callback=initAutocomplete"
       async defer></script>
+
+
+      
 </html>

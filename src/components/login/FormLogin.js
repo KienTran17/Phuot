@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import login from '../../api/login';
 import { connect } from 'react-redux';
+import Facebook from './Facebook';
 //var formLogin = document.getElementsById('formLogin');
 
 
+
 function getCookie(name) {
-	var value = "; " + document.cookie;
-	var parts = value.split("; " + name + "=");
-	if (parts.length == 2) return parts.pop().split(";").shift();
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
 class FormLogin extends Component {
 
     componentDidMount() {
+        
     }
     onSubmit(e) {
         e.preventDefault();
@@ -59,7 +62,8 @@ class FormLogin extends Component {
                                     <a href="blog-detail-2.html" className="link-large-popup">Forgot password?</a>
                                 </div>
                                 <div className="col-xs-6 for-signin">
-                                    <a href="#" onClick={this.handleClick}>Login</a>
+                                   <Facebook />
+                                    {/*<a href="#" onClick={this.handleClick}>Login</a>*/}
                                     <button className="be-popup-sign-button" >SIGN IN</button>
                                 </div>
                             </form>

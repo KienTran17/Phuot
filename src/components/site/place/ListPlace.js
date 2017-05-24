@@ -22,18 +22,17 @@ export default class ListPlace extends Component {
         return (
             <div className="custom-column-5">
                 <div className="be-post">
-                    <a href="blog-detail-2.html" className="be-img-block">
+                    <a href={"place/" + place.id} className="be-img-block">
                         <img src={lstImage[0] ? lstImage[0].link : ""} alt="omg" />
                     </a>
-                    <a href={"place/" + place.id} className="be-post-title">{place.name}</a>
-                    {/*<span>
-                        <a href="blog-detail-2.html" className="be-post-tag">Interaction Design</a>,
-                                            <a href="blog-detail-2.html" className="be-post-tag">UI/UX</a>,
-                                            <a href="blog-detail-2.html" className="be-post-tag">Web Design</a>
-                    </span>*/}
-                    <div className="author-post">
+                    <a style={{fontSize:"14pt"}} href={"place/" + place.id} className="be-post-title">{place.name}</a>
+                    <span>
+                        <a style={{fontSize:"10pt"}}  href={"place/" + place.id} className="be-post-tag">{place.description}</a>
+                                            
+                    </span>
+                    <div style={{fontSize:"10pt"}} className="author-post">
                         <img src={user.avatar} alt className="ava-author" />
-                        <span>by <a href="blog-detail-2.html">{user.last_name + ' ' + user.first_name}</a></span>
+                        <span>by <a href={"./user/"+user.id}>{user.last_name + ' ' + user.first_name}</a></span>
                     </div>
                     <div className="info-block">
                         <span><i className="fa fa-thumbs-o-up" /> {place.like}</span>

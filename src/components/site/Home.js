@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ListPlace from './place/ListPlace';
 import getAllPlace from '../../api/place/getAllPlace';
 import getUserByUserName from '../../api/user/getUserByUserName';
-
+import Facebook from '../login/Facebook';
 
 
 
@@ -12,23 +12,22 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = { lstPlace: [] };
-         
+
     }
     componentDidMount() {
 
         const { isAuthen, arrAllPlace, dispatch } = this.props;
         getAllPlace().then(lstPlace => {
-            this.setState({lstPlace: lstPlace});
+            this.setState({ lstPlace: lstPlace });
             dispatch({
                 type: "INIT_PLACE",
                 item: this.state.lstPlace
             })
         });
-        
     }
+
     render() {
         const { isAuthen } = this.props;
-        const show = isAuthen ? "" : <Register />;
         return (
             <div id="content-block">
                 <div className="head-bg">
@@ -36,8 +35,8 @@ class Home extends Component {
                     <div className="head-bg-content">
                         <h1>Your Best Social Network Template</h1>
                         <p>Donec in rhoncus tortor. Sed tristique auctor ligula vel viverra</p>
-                        <a className="btn color-1 size-1 hover-1" href="blog-detail-2.html"><i className="fa fa-facebook" />sign up via facebook</a>
-                        {show}
+                        {isAuthen ? "" : <Facebook />}
+                        {isAuthen ? "" : <Register />}
                     </div>
                 </div>
                 <div className="container-fluid custom-container">
@@ -307,11 +306,11 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="col-md-10">
                             <div className="row _post-container_">
-                                {this.state.lstPlace.map((e, i) =>  
-                                     <ListPlace  place={e} key={i}  />
+                                {this.state.lstPlace.map((e, i) =>
+                                    <ListPlace place={e} key={i} />
                                 )}
                             </div>
                         </div>

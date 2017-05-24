@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Login from '../login/ButtonLogin';
 import { connect } from 'react-redux';
 import checkLogin from '../../api/checkLogin';
-
+import Author from '../login/Author';
 function getCookie(name) {
 	var value = "; " + document.cookie;
 	var parts = value.split("; " + name + "=");
@@ -17,18 +17,17 @@ class Header extends Component {
 			if (r) {
 				if (!isAuthen)
 					dispatch({type: 'LOGIN'});
-					
 			}
 		}).catch(e=>e);
 	}
 	render() {
-		const { isAuthen } = this.props;
-		const show = isAuthen ? <h1>Da Dang Nhap </h1> : <Login />;
+		const { isAuthen, user } = this.props;
+		const show = isAuthen ? <Author /> : <Login />;
 		return (
 			<div className="container-fluid custom-container">
 				<div className="row no_row row-header">
 					<div className="brand-be">
-						<a href="index.html"><img src="../asset/img/logo.png" alt="logo" className="be_logo" />
+						<a href="/"><img src="../asset/img/logo.png" alt="logo" className="be_logo" />
 						</a>
 					</div>
 					<div className="header-menu-block">
@@ -80,4 +79,4 @@ class Header extends Component {
 	}
 }
 
-export default connect(state => ({ isAuthen: state.isAuthen }))(Header)
+export default connect(state => ({ isAuthen: state.isAuthen, user: state.user }))(Header)

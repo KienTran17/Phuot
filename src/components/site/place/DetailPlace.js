@@ -60,15 +60,12 @@ export default class ListPlace extends Component {
                                         <div className="clear" />
                                     </div>
 
-                                    <div id="myCarousel" className="carousel slide" data-ride="carousel">
-                                        {/* Indicators */}
+                                    {/*<div id="myCarousel" className="carousel slide" data-ride="carousel">
                                         <ol className="carousel-indicators">
-                                            <li data-target="#myCarousel" data-slide-to={0} className="active" />
                                             {lstImage.map((e, i) =>
-                                                <li data-target="#myCarousel" data-slide-to={i+1} />
+                                                <li data-target="#myCarousel" data-slide-to={i} />
                                             )}
                                         </ol>
-                                        {/* Wrapper for slides */}
                                         <div className="carousel-inner">
                                             {lstImage.map((e, i) =>
                                                 <div key={i} className={i == 0 ? "item active" : "item"} >
@@ -78,7 +75,6 @@ export default class ListPlace extends Component {
 
 
                                         </div>
-                                        {/* Left and right controls */}
                                         <a className="left carousel-control" href="#myCarousel" data-slide="prev">
                                             <span className="fa fa-chevron-left" />
                                             <span className="sr-only">Previous</span>
@@ -87,13 +83,13 @@ export default class ListPlace extends Component {
                                             <span className="fa fa-chevron-right" />
                                             <span className="sr-only">Next</span>
                                         </a>
-                                    </div>
+                                    </div>*/}
 
-                                    {/*<div className="post-preview be-large-post-slider">
+                                    <div className="post-preview be-large-post-slider">
                                         <div className="swiper-container" data-autoplay={0} data-loop={1} data-speed={500} data-center={0} data-slides-per-view={1}>
                                             <div className="swiper-wrapper">
                                                 {lstImage.map((e, i) =>
-                                                    <div key={i} className="swiper-slide" data-val={i}>
+                                                    <div key={i} className="swiper-slide active" data-val={i}>
                                                         <img className="img-responsive img-full" src={"/" + e.link} alt />
                                                     </div>
                                                 )}
@@ -102,7 +98,7 @@ export default class ListPlace extends Component {
                                             <div className="swiper-arrow-left type-3" />
                                             <div className="swiper-arrow-right type-3" />
                                         </div>
-                                    </div>*/}
+                                    </div>
                                     <div className="blog-content be-large-post-align">
                                         <div className="post-text ">
                                             {place.description}

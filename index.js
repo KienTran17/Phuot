@@ -30,6 +30,7 @@ app.use(express.static('public'));
 
 app.get('/api/checklogin/:token', require('./controller/front-end/home/checkLogin'));
 app.post('/api/login', jsonParser, require('./controller/front-end/home/login'));
+app.post('/api/handleuser', jsonParser, require('./controller/front-end/user/handleUser'));
 
 app.post('/api/register', jsonParser, require('./controller/front-end/home/register'));
 
@@ -44,6 +45,6 @@ app.get('/api/getuserbyusername/:token', require('./controller/front-end/user/ge
 app.get('/api/getlistplacefromuser/:token/:id', require('./controller/front-end/user/getListPlaceFromUser'));
 
 app.post('/insertplace', require('./controller/front-end/user/insertPlace'));
-
+app.get('/api/logout',jsonParser, require('./controller/front-end/user/logOut'));
 app.get('*', require('./controller/front-end/home/home'));
 

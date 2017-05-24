@@ -112,7 +112,7 @@ img.be_logo { text-align: left; }
 .fa-angle-down { display: none; }
 
 /*login-block*/
-.login-header-block { margin-top: 17.5px; float: right; }
+.login-header-block { margin-top: 15px;margin-right: 5px; float: right; }
 
 .login_block { text-align: right; }
 
@@ -2308,4 +2308,7 @@ transition: all ease-out 0.3s;}
   .header-menu ul{border-radius: 0 0 5px 5px;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);}
 
+}
+@media screen and (min-width: 200px) and (max-width: 1024px) {
+  #username { display: none; }   /* hide it elsewhere */
 }
