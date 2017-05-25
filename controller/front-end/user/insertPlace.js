@@ -22,7 +22,7 @@ module.exports = (req, res) => {
     //res.send(token)
     verify(token)
         .then((r) => {
-            getArrayUpload("image")(req, res, function (err) {
+            getArrayUpload("image")(req, res, async function (err) {
                 let { lat, lng, txtNamePlace, cbTreckking, camping, seeView, cbClaimb, txtAddress, cityId, provinceId, txtDesPlace } = req.body;
                 if (err) {
                     res.send('Loi' + err);
@@ -31,16 +31,17 @@ module.exports = (req, res) => {
                     if (!camping) camping = false; else camping = true;
                     if (!seeView) seeView = false; else seeView = true;
                     if (!cbClaimb) seeView = false; else cbClaimb = true;
-                     getUserByUsername(r.username).then(user => {
-                        addPlace(txtNamePlace, txtAddress, 1, cityId, provinceId, lat, lng, txtDesPlace,
+                     await getUserByUsername(r.username).then(async user => {
+                         await addPlace(txtNamePlace, txtAddress, 1, cityId, provinceId, lat, lng, txtDesPlace,
                             todaysDate, user.rows[0].id, cbTreckking, camping, seeView, cbClaimb)
-                            .then(idPlace => {
+                            .then(async idPlace => {
                                 const arrfile = req.files;
-                                arrfile.forEach(e => {
-                                    insertImage(txtNamePlace, 'upload/' + e.filename, 0, 0, user.rows[0].id, idPlace.rows[0].id, todaysDate)
-                                        .then(r => res.redirect('/profile'))
+                                await arrfile.forEach(async e => {
+                                    await insertImage(txtNamePlace, 'upload/' + e.filename, 0, 0, user.rows[0].id, idPlace.rows[0].id, todaysDate)
+                                        .then(r => r)
                                         .catch(err => console.log('loi insert image : ' + err));
                                 });
+                                res.redirect('/profile')
                             })
                             .catch(e => console.log('loi insert place ' + e));
 

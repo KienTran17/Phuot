@@ -27,7 +27,7 @@ export default class ListPlace extends Component {
                     </a>
                     <a style={{fontSize:"14pt"}} href={"place/" + place.id} className="be-post-title">{place.name}</a>
                     <span style={{height:"60px",overflow:"hidden"}}>
-                        <a style={{fontSize:"10pt"}}  href={"place/" + place.id} className="be-post-tag">{place.description}</a>
+                        <a style={{fontSize:"10pt"}}  href={"place/" + place.id} className="be-post-tag"  dangerouslySetInnerHTML={{__html: place.description}}></a>
                                             
                     </span>
                     <div style={{fontSize:"10pt"}} className="author-post">

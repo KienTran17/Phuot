@@ -25,7 +25,7 @@ class ListPlaceUser extends Component {
                     </a>
                     <a href={"/place/" + place.id} className="be-post-title">{place.name}</a>
                     <span>
-                        <a href={"/place/" + place.id} className="be-post-tag">{place.description}</a>,
+                        <a href={"/place/" + place.id} className="be-post-tag"  dangerouslySetInnerHTML={{__html: place.description}}></a>,
 
 					</span>
                     <div className="author-post">

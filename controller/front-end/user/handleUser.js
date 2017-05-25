@@ -7,11 +7,11 @@ const { sign } = require('../../../config/jwt');
 
 module.exports = (req, res) => {
     const {data} = req.body;
-    checkExistAccount(data.email, data.id).then(r => {
+    checkExistAccount(data.email, data.id).then(async r => {
         if (r.rows.length === 0) {
-            insertUserFb(data.first_name, data.last_name, data.email, data.picture.data.url, data.link, data.id).then(isOk => {
+            await insertUserFb(data.first_name, data.last_name, data.email, data.picture.data.url, data.link, data.id).then(async isOk => {
                 const username = data.email;
-                sign({ username }).then(token => {
+                await sign({ username }).then(token => {
                     //console.log(token);
                     req.session.username = username;
                     res.cookie('tk', token, { expires: new Date(Date.now() + 900000)}).send('1');
@@ -23,7 +23,7 @@ module.exports = (req, res) => {
         else {
             const username = data.email;
             console.log(username);
-            sign({ username }).then(token => {
+            await sign({ username }).then(token => {
                 //console.log(token);
                 req.session.username = username;
                 res.cookie('tk', token, { expires: new Date(Date.now() + 900000)}).send();

@@ -32236,11 +32236,7 @@ var ListPlace = function (_Component) {
                     _react2.default.createElement(
                         'span',
                         { style: { height: "60px", overflow: "hidden" } },
-                        _react2.default.createElement(
-                            'a',
-                            { style: { fontSize: "10pt" }, href: "place/" + place.id, className: 'be-post-tag' },
-                            place.description
-                        )
+                        _react2.default.createElement('a', { style: { fontSize: "10pt" }, href: "place/" + place.id, className: 'be-post-tag', dangerouslySetInnerHTML: { __html: place.description } })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -32706,11 +32702,7 @@ var ListPlaceUser = function (_Component) {
                     _react2.default.createElement(
                         'span',
                         null,
-                        _react2.default.createElement(
-                            'a',
-                            { href: "/place/" + place.id, className: 'be-post-tag' },
-                            place.description
-                        ),
+                        _react2.default.createElement('a', { href: "/place/" + place.id, className: 'be-post-tag', dangerouslySetInnerHTML: { __html: place.description } }),
                         ','
                     ),
                     _react2.default.createElement(
