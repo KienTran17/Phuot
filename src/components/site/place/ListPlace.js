@@ -26,7 +26,7 @@ export default class ListPlace extends Component {
                         <img src={lstImage[0] ? lstImage[0].link : ""} alt="omg" />
                     </a>
                     <a style={{fontSize:"14pt"}} href={"place/" + place.id} className="be-post-title">{place.name}</a>
-                    <span>
+                    <span style={{height:"60px",overflow:"hidden"}}>
                         <a style={{fontSize:"10pt"}}  href={"place/" + place.id} className="be-post-tag">{place.description}</a>
                                             
                     </span>

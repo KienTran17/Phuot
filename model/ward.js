@@ -1,7 +1,7 @@
 const queryDB = require('./db');
 
-const getAllWardFromCity = (id) => (
-    queryDB(`select * from "ward" where city_id = $1 `, [id])
+const getAllWard = () => (
+    queryDB(`select * from "ward"  `,[])
 );
 
-module.exports = { getAllWardFromCity };
+module.exports = { getAllWard };

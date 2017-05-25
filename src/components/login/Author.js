@@ -66,7 +66,7 @@ class Author extends Component {
                 <ul style={{ fontSize: "9pt", backgroundColor: "#adbeff", color: "black", fontWeight: "bold" }} className="dropdown-menu dropdown-menu-right">
                     <li><a href="#">Tạo nhóm phượt <span className="glyphicon glyphicon-stats pull-right" /></a></li>
                     <li className="divider" />
-                    <li><a href="#">Tạo địa điểm <span className="glyphicon pull-right">  </span></a></li>
+                    <li><a href="./createplace">Tạo địa điểm <span className="glyphicon pull-right">  </span></a></li>
                     <li className="divider" />
                     <li><a href="#">Chia sẽ hành trình <span className="glyphicon glyphicon-heart pull-right" /></a></li>
                     <li className="divider" />

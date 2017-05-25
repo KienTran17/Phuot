@@ -46,5 +46,7 @@ app.get('/api/getlistplacefromuser/:token/:id', require('./controller/front-end/
 
 app.post('/insertplace', require('./controller/front-end/user/insertPlace'));
 app.get('/api/logout',jsonParser, require('./controller/front-end/user/logOut'));
+app.get('/api/getcity',jsonParser, require('./controller/front-end/place/getCity'));
+app.get('/api/getward',jsonParser, require('./controller/front-end/place/getWard'));
 app.get('*', require('./controller/front-end/home/home'));
 

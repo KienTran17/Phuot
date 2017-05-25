@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import getAllCity from '../../../api/place/getAllCity';
+import getAllWard from '../../../api/place/getAllWard';
 import $ from 'jquery';
 import './../../../../public/asset/js/fileinput';
 //import './../../../../public/asset/css/fileinput.css';
@@ -11,7 +13,10 @@ import './../../../../public/asset/js/fileinput.min';
 import './../../../../public/asset/js/bootstrap_modal.min';
 
 class CreatePlace extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = { city: [], ward: [], wardCommon: []};
+    }
     componentDidMount() {
         $('#file-3').fileinput({
             showUpload: false,
@@ -21,7 +26,16 @@ class CreatePlace extends Component {
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false,
             initialPreviewAsData: true
-        })
+        });
+        CKEDITOR.replace( 'editor1' );
+        getAllCity().then(city => this.setState({ city }));
+        getAllWard().then(ward => this.setState({ ward, wardCommon: ward }));
+
+    }
+    selectCity(event){
+        const cityId = event.target.value;
+        this.setState({ward: this.state.wardCommon.filter(e=> e.city_id == cityId )});
+      
     }
     render() {
         return (
@@ -30,11 +44,11 @@ class CreatePlace extends Component {
                     <form action="/insertplace" className="form-horizontal" method="POST" encType="multipart/form-data">
                         <div className="row">
                             <div className="col-xs-12 col-md-8 left-feild">
-                                <div style={{ backgroundColor: 'rgb(183, 211, 250)' }} className="container">
+                                <div style={{ backgroundColor: 'rgb(233, 246, 255)' }} className="container">
                                     <div style={{ textAlign: 'center' }} className="header-page">
                                         <br />
                                         <span>
-                                            <h2><i className="fa fa-heart" /> THÊM ĐỊA ĐIỂM</h2>
+                                            <h2><i className="fa fa-map-signs" /> THÊM ĐỊA ĐIỂM</h2>
                                             <span style={{ fontStyle: 'italic' }}>Những địa điểm - cảnh đẹp bạn đã khám phá chưa có trên ĐiPhượt.com ? Cùng nhau chia sẻ nào!</span>
                                         </span>
                                     </div>
@@ -60,7 +74,7 @@ class CreatePlace extends Component {
                                                         <input id="seeView" name="seeView" type="checkbox" />Ngắm cảnh
                           </label>
                                                     <label className="checkbox-inline">
-                                                        <input id="cbClaimb" name="cbClaimb" type="checkbox" />Leo núis
+                                                        <input id="cbClaimb" name="cbClaimb" type="checkbox" />Leo núi
                           </label>
                                                 </div>
                                                 <span style={{ color: 'red', fontStyle: 'italic' }} id="valCheckbox" />
@@ -77,9 +91,11 @@ class CreatePlace extends Component {
                                             <div className="row">
                                                 <label htmlFor="inputPassword" className="col-sm-3 control-label">Tỉnh thành</label>
                                                 <div className="col-sm-2">
-                                                    <select id="ddlCity" name="cityId" className="content  control-label">
-                                                        <option value={0}>Tỉnh/ Thành Phố</option>
-                                                        <option value={1}>ádfasdfad</option>
+                                                    <select onChange={this.selectCity.bind(this)} id="ddlCity" name="cityId" className="content  control-label">
+                                                        <option id="cityFirst" value={0}>Tỉnh/ Thành Phố</option>
+                                                        {this.state.city.map((e, i) =>
+                                                            <option key={i} value={e.id}>{e.name}</option>
+                                                        )}
                                                     </select>
                                                     <br />
                                                 </div>
@@ -87,7 +103,9 @@ class CreatePlace extends Component {
                                                 <div className="col-sm-2">
                                                     <select id="ddlProvinces" name="provinceId" className="content  control-label">
                                                         <option value={0}>Quận/ Huyện</option>
-                                                           <option value={1}>ádfsadfasdfsad</option>
+                                                        {this.state.ward.map((e, i) =>
+                                                            <option key={i} value={e.id}>{e.name}</option>
+                                                        )}
                                                     </select>
                                                 </div>
                                                 <span style={{ color: 'red', fontStyle: 'italic' }} id="valCity" />
@@ -106,7 +124,7 @@ class CreatePlace extends Component {
                                             </div>
                                             <label className="col-sm-3 control-label">Mô tả địa điểm</label>
                                             <div className="col-sm-9">
-                                                <textarea rows={3} required="Nhập mô tả địa điểm" id="txtDesPlace" className="form-control" name="txtDesPlace" placeholder="Mô tả địa điểm" defaultValue={""} />
+                                                <textarea id="editor1" rows="10" cols="80" required="Nhập mô tả địa điểm" className="form-control" name="txtDesPlace" placeholder="Mô tả địa điểm" defaultValue={""} />
                                                 <span style={{ color: 'red', fontStyle: 'italic' }} id="valDesc" />
                                             </div>
                                             <label className="col-sm-3" />

@@ -100,8 +100,8 @@ export default class ListPlace extends Component {
                                         </div>
                                     </div>
                                     <div className="blog-content be-large-post-align">
-                                        <div className="post-text ">
-                                            {place.description}
+                                        <div className="post-text " dangerouslySetInnerHTML={{__html: place.description}}>
+                                            
                                         </div>
                                     </div>
                                     <div className="be-large-post-align">
