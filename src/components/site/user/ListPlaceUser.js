@@ -17,18 +17,20 @@ class ListPlaceUser extends Component {
         const lstImage = this.state.lstImage;
         return (
             <div className="col-ml-12 col-xs-6 col-sm-4">
+                
                 <div className="be-post">
                     <a href={"/place/" + place.id} className="be-img-block">
                         {/*image here*/}
-                        <img src="" alt={place.name} />
+                       <img style={{height:"170px"}} src={lstImage[0] ? lstImage[0].link : ""} alt />
+                        
                         {/*end image*/}
                     </a>
-                    <a href={"/place/" + place.id} className="be-post-title">{place.name}</a>
-                    <span>
-                        <a href={"/place/" + place.id} className="be-post-tag"  dangerouslySetInnerHTML={{__html: place.description}}></a>,
+                    <a href={"/place/" + place.id} style={{fontSize:"14pt"}} className="be-post-title">{place.name}</a>
+                    <span  style={{marginBottom:"10px",height:"40px",overflow:"hidden"}}>
+                        <a  style={{fontSize:"10pt"}} href={"/place/" + place.id} className="be-post-tag"  dangerouslySetInnerHTML={{__html: place.description}}></a>,
 
 					</span>
-                    <div className="author-post">
+                    <div  style={{fontSize:"10pt"}} className="author-post">
                         <img src={user.avatar} alt="" className="ava-author" />
                         <span>by <a href="/profile">{user.last_name + " " + user.first_name}</a></span>
                     </div>

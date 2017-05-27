@@ -7,6 +7,7 @@ import getAllPlace from './api/place/getAllPlace';
 import Home from './components/site/Home'
 import DetailPlace from './components/site/place/DetailPlace'
 import Profile from './components/site/user/Profile';
+import EditProfile from './components/site/user/EditProfile';
 import CreatePlace from './components/site/user/CreatePlace';
 const Private = () => <h2>Private page</h2>;
 const Public = () => <h2>Public page</h2>;
@@ -21,8 +22,15 @@ class App extends Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
-        
+    async componentDidMount() {
+        const { dispatch } = this.props;
+        const token = getCookie('tk');
+        await getAllPlace().then(lstPlace => {
+            dispatch({
+                type: "INIT_PLACE",
+                item: lstPlace
+            })
+        });
     }
     render() {
         const token = getCookie('tk');
@@ -30,15 +38,16 @@ class App extends Component {
             <BrowserRouter basename="/">
                 <div>
                     <header>
-                        <Header />
+                        <Header isAuthen={this.props.isAuthen} />
                     </header>
 
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" render={() => <Home isAuthen={this.props.isAuthen} arrAllPlace={this.props.arrAllPlace} />} />
                     <Route path="/place/:id" component={DetailPlace} />
                     <Route path="/profile" render={() => token ? <Profile /> : <Redirect to="/" />} />
                     <Route path="/createplace" render={() => token ? <CreatePlace /> : <Redirect to="/" />} />
+                    <Route path="/editprofile" render={() => token ? <EditProfile /> : <Redirect to="/" />} />
                     <footer>
-                        <Footer />
+                        <Footer isAuthen={this.props.isAuthen} />
                     </footer>
                 </div>
             </BrowserRouter>

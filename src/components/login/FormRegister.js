@@ -79,4 +79,4 @@ class FormRegister extends Component {
         );
     }
 }
-export default connect(state => ({ isAuthen: state.isAuthen }))(FormRegister);
+export default connect()(FormRegister);

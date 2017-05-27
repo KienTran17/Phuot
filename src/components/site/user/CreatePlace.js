@@ -15,7 +15,7 @@ import './../../../../public/asset/js/bootstrap_modal.min';
 class CreatePlace extends Component {
     constructor(props) {
         super(props);
-        this.state = { city: [], ward: [], wardCommon: []};
+        this.state = { city: [], ward: [], wardCommon: [] };
     }
     componentDidMount() {
         $('#file-3').fileinput({
@@ -27,15 +27,15 @@ class CreatePlace extends Component {
             overwriteInitial: false,
             initialPreviewAsData: true
         });
-        CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace('editor1');
         getAllCity().then(city => this.setState({ city }));
         getAllWard().then(ward => this.setState({ ward, wardCommon: ward }));
 
     }
-    selectCity(event){
+    selectCity(event) {
         const cityId = event.target.value;
-        this.setState({ward: this.state.wardCommon.filter(e=> e.city_id == cityId )});
-      
+        this.setState({ ward: this.state.wardCommon.filter(e => e.city_id == cityId) });
+
     }
     render() {
         return (

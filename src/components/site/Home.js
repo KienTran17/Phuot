@@ -11,23 +11,16 @@ import Facebook from '../login/Facebook';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = { lstPlace: [] };
+        this.state = {};
 
     }
     componentDidMount() {
 
-        const { isAuthen, arrAllPlace, dispatch } = this.props;
-        getAllPlace().then(lstPlace => {
-            this.setState({ lstPlace: lstPlace });
-            dispatch({
-                type: "INIT_PLACE",
-                item: this.state.lstPlace
-            })
-        });
+        //const { isAuthen, arrAllPlace, dispatch } = this.props;
     }
 
     render() {
-        const { isAuthen } = this.props;
+        const { isAuthen, arrAllPlace } = this.props;
         return (
             <div id="content-block">
                 <div className="head-bg">
@@ -309,7 +302,7 @@ class Home extends Component {
 
                         <div className="col-md-10">
                             <div className="row _post-container_">
-                                {this.state.lstPlace.map((e, i) =>
+                                {arrAllPlace.map((e, i) =>
                                     <ListPlace place={e} key={i} />
                                 )}
                             </div>
@@ -320,4 +313,4 @@ class Home extends Component {
         );
     }
 }
-export default connect(state => ({ isAuthen: state.isAuthen, arrAllPlace: state.arrAllPlace }))(Home)
+export default connect()(Home)

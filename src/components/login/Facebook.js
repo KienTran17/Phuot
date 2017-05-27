@@ -64,10 +64,10 @@ class Facebook extends React.Component {
     testAPI() {
         const { dispatch, isAuthen } = this.props;
         const token = getCookie('tk');
-        FB.api('/me', 'GET', { fields: 'first_name,last_name,name,picture,link,id,email' }, function (response) {
+        FB.api('/me', 'GET', { fields: 'first_name,last_name,name,picture,link,id,email' }, async function (response) {
             if(!token)
             if (!isAuthen)
-                handleUser(response).then(r => {
+                await handleUser(response).then(r => {
                     dispatch({ type: "LOGIN" })
                 });
         });
@@ -92,15 +92,15 @@ class Facebook extends React.Component {
     // // This function is called when someone finishes with the Login
     // // Button.  See the onlogin handler attached to it in the sample
     // // code below.
-    checkLoginState() {
-        FB.getLoginStatus(function (response) {
+    async checkLoginState() {
+        await FB.getLoginStatus(function (response) {
             this.statusChangeCallback(response);
         }.bind(this));
     }
 
-    handleClick() {
+    async handleClick() {
         const { dispatch, isAuthen } = this.props;
-        FB.login((response)=> {
+        await FB.login((response)=> {
             if(response.status ==="connected"){
                     //dispatch({ type: "LOGIN" });
                     this.checkLoginState();

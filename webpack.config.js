@@ -1,5 +1,7 @@
+require("babel-core/register");
+require("babel-polyfill");
 module.exports = {
-    entry: './src/web_app.js',
+    entry: ['babel-polyfill','./src/web_app.js'],
     output: {
         filename: './public/bundle.js'
     },

@@ -9,7 +9,7 @@ function getCookie(name) {
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
-class Profile extends Component {
+export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = { user: {}, lstPlace: [] };
@@ -22,12 +22,11 @@ class Profile extends Component {
                 this.setState({ lstPlace: lst });
             })
         })
-        
+
     }
     render() {
         const lstPlace = this.state.lstPlace;
         const user = this.state.user;
-        console.log(lstPlace)
         return (
             <div id="content-block">
                 <div className="container be-detail-container">
@@ -38,7 +37,7 @@ class Profile extends Component {
                                     <a className="be-ava-user style-2" href="blog-detail-2.html">
                                         <img src={user.avatar} alt />
                                     </a>
-                                    <a className="be-ava-left btn color-1 size-2 hover-1"><i className="fa fa-pencil" />Edit</a>
+                                    <a href="/editprofile" className="be-ava-left btn color-1 size-2 hover-1"><i className="fa fa-pencil" />Edit</a>
                                     <div className="be-ava-right btn btn-share color-4 size-2 hover-7">
                                         <i className="fa fa-share-alt" />share
                     <div className="share-buttons">
@@ -96,7 +95,7 @@ class Profile extends Component {
                             <div className="tab-wrapper style-1">
                                 <div className="tab-nav-wrapper">
                                     <div className="nav-tab  clearfix">
-                                        
+
                                         <div className="nav-tab-item active">
                                             <span>Bộ sưu tập địa điểm</span>
                                         </div>
@@ -111,12 +110,9 @@ class Profile extends Component {
                                 <div className="tabs-content clearfix">
                                     <div className="tab-info active">
                                         <div className="row">
-                                            <h1>tag bộ sưu tập dịa điểm</h1>
-                                            {lstPlace ? lstPlace.map((e,i)=> <ListPlaceUser place={e} key={i} user={user} /> ):" "}
+                                            {lstPlace ? lstPlace.map((e, i) => <ListPlaceUser place={e} key={i} user={user} />) : " "}
                                         </div>
-                                        <a> XEM THÊM </a>
                                         <hr />
-                                        <h1> địa điểm đã lưu</h1>
                                     </div>
                                     <div className="tab-info">
                                         <div className="row">
@@ -358,4 +354,3 @@ class Profile extends Component {
         );
     }
 }
-export default connect(state => ({ isAuthen: state.isAuthen }))(Profile)

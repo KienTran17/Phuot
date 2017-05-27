@@ -1,3 +1,4 @@
+"use strict";
 import React, { Component } from 'react';
 import login from '../../api/login';
 import { connect } from 'react-redux';
@@ -15,15 +16,18 @@ function getCookie(name) {
 class FormLogin extends Component {
 
     componentDidMount() {
-        
+
     }
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
         const { dispatch } = this.props;
         const { txtEmail, txtPassword } = this.refs;
-        login(txtEmail.value, txtPassword.value).then(isOk => {
+        await login(txtEmail.value, txtPassword.value).then(async isOk => {
             if (isOk) {
-                dispatch({ type: 'LOGIN' });
+                await dispatch({ type: 'LOGIN' });
+                await getUserByUserName(getCookie('tk')).then(async user => {
+                    await dispatch({type:"USER", item: user})
+                });
             }
             else alert('Sai username hoặc mật khẩu, Vui lòng đăng nhập lại!')
         });
@@ -62,7 +66,7 @@ class FormLogin extends Component {
                                     <a href="blog-detail-2.html" className="link-large-popup">Forgot password?</a>
                                 </div>
                                 <div className="col-xs-6 for-signin">
-                                   <Facebook />
+                                    <Facebook />
                                     {/*<a href="#" onClick={this.handleClick}>Login</a>*/}
                                     <button className="be-popup-sign-button" >SIGN IN</button>
                                 </div>
@@ -75,4 +79,4 @@ class FormLogin extends Component {
     }
 }
 
-export default connect(state => ({ isAuthen: state.isAuthen }))(FormLogin);
+export default connect()(FormLogin);

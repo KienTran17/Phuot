@@ -188,14 +188,14 @@ class Footer extends Component {
                 <div className="be-fixed-filter" />
                 <div id="formLogin" style={display} className="large-popup login">
                     <div className="large-popup-fixed" />
-                    <FormLogin />
+                    <FormLogin isAuthen={isAuthen} />
                 </div>
                 <div id="fromRegister" style={display} className="large-popup register">
                     <div className="large-popup-fixed" ></div>
-                    <FormRegister />
+                    <FormRegister isAuthen={isAuthen} />
                 </div>
             </div>
         );
     }
 }
-export default connect(state => ({ isAuthen: state.isAuthen }))(Footer);
+export default connect()(Footer);

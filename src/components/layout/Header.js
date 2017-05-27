@@ -3,6 +3,7 @@ import Login from '../login/ButtonLogin';
 import { connect } from 'react-redux';
 import checkLogin from '../../api/checkLogin';
 import Author from '../login/Author';
+import getUserByUserName from '../../api/user/getUserByUserName'
 function getCookie(name) {
 	var value = "; " + document.cookie;
 	var parts = value.split("; " + name + "=");
@@ -10,19 +11,21 @@ function getCookie(name) {
 }
 
 class Header extends Component {
-	componentDidMount() {
+	async componentDidMount() {
 		const { isAuthen, dispatch } = this.props;
 		const token = getCookie('tk')
-		checkLogin(token).then(r => {
+		await checkLogin(token).then(r => {
 			if (r) {
-				if (!isAuthen)
-					dispatch({type: 'LOGIN'});
+				if (!isAuthen) {
+					dispatch({ type: 'LOGIN' });
+				}
 			}
-		}).catch(e=>e);
+		}).catch(e => e);
 	}
 	render() {
 		const { isAuthen, user } = this.props;
-		const show = isAuthen ? <Author /> : <Login />;
+		console.log(user)
+		const show = isAuthen ? <Author isAuthen={isAuthen} user={user} /> : <Login />;
 		return (
 			<div className="container-fluid custom-container">
 				<div className="row no_row row-header">
@@ -79,4 +82,4 @@ class Header extends Component {
 	}
 }
 
-export default connect(state => ({ isAuthen: state.isAuthen, user: state.user }))(Header)
+export default connect(state => ({ user: state.user }))(Header)

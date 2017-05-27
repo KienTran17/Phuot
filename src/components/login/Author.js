@@ -13,10 +13,10 @@ class Author extends Component {
         super(props);
         this.state = { user: {} };
     }
-    componentDidMount() {
+    async componentDidMount() {
         const token = getCookie('tk');
         if (token) {
-            getUserByUserName(token).then(user => {
+            await getUserByUserName(token).then(user => {
                 this.setState({ user })
             });
         }
@@ -64,15 +64,15 @@ class Author extends Component {
                     <img className="login-user" src={user.avatar ? user.avatar : "../asset/img/login.jpg"} alt /><span id="username"> {user.last_name ? ' ' + user.last_name + ' ' + user.first_name : " "}</span>
                 </span>
                 <ul style={{ fontSize: "9pt", backgroundColor: "#adbeff", color: "black", fontWeight: "bold" }} className="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Tạo nhóm phượt <span className="glyphicon glyphicon-stats pull-right" /></a></li>
+                    <li><a href="#"><span className="glyphicon glyphicon-stats pull-right" />Tạo nhóm phượt </a></li>
                     <li className="divider" />
-                    <li><a href="./createplace">Tạo địa điểm <span className="glyphicon pull-right">  </span></a></li>
+                    <li><a href="./createplace"><span className="glyphicon pull-right">  </span>Tạo địa điểm </a></li>
                     <li className="divider" />
-                    <li><a href="#">Chia sẽ hành trình <span className="glyphicon glyphicon-heart pull-right" /></a></li>
+                    <li><a href="#"><span className="glyphicon glyphicon-heart pull-right" />Chia sẽ hành trình </a></li>
                     <li className="divider" />
-                    <li><a href="./profile">Trang cá nhân <span className="glyphicon glyphicon-cog pull-right" /></a></li>
+                    <li><a href="./profile"><span className="glyphicon glyphicon-cog pull-right" />Trang cá nhân </a></li>
                     <li className="divider" />
-                    <li><a onClick={this.logout.bind(this)}>Đăng xuất <span className="glyphicon glyphicon-log-out pull-right" /></a></li>
+                    <li><a onClick={this.logout.bind(this)}><span className="glyphicon glyphicon-log-out pull-right" />Đăng xuất </a></li>
                 </ul>
             </div>
 
